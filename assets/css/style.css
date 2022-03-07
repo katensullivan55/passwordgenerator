@@ -21,6 +21,8 @@ body {
   padding-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
+  max-width: 500px;
+  margin: auto;
 }
 
 header {
