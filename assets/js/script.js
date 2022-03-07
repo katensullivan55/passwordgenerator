@@ -1,21 +1,21 @@
-// GLOBAL ASSIGNED VARIABLES
-let alphaCap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-let alphaLow = 'acdefghijklnopqrstuvwxyz';
-let num = '0123456789';
-let specialChar = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-let allChar = '';
-let length = '';
+// global variables
+let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let lowercase = "acdefghijklnopqrstuvwxyz";
+let numbers = "0123456789";
+let special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+let allCharacters = "";
+let length = "";
 
 
-// Get references to the #generate element 
+// reference #generate element 
 let generateBtn = document.querySelector("#generate");
 
 // GENERATE PASSWORD FUNCTION
 function writePassword() {
-  let passwordLengthPrompt = Number(prompt('Pick a password length from 8 to 128 characters.'));
+  let passwordLengthPrompt = Number(prompt("Pick a password length from 8 to 128 characters."));
   //if password length is null, too small, or too large, alert user and re-run function
   if (!passwordLengthPrompt || passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
-    alert('Please type a valid answer!');
+    alert("Please type a valid answer!");
     writePassword();
   }
   //if length is sufficient, add number to the length variable
@@ -24,37 +24,37 @@ function writePassword() {
   }
 
   //user prompts
-  let addLowercase = window.confirm('Would you like to include lowercase letters? If so, click okay.');
-  let addUppercase = window.confirm('Would you like to include uppercase letters? If so, click okay.');
-  let addNumbers = window.confirm('Would you like to include numbers? If so, click okay.');
-  let addSpecialChar = window.confirm('Would you like to include special characters? If so, click okay.');
+  let addLowercase = window.confirm("Would you like to include lowercase letters?");
+  let addUppercase = window.confirm("Would you like to include uppercase letters?");
+  let addNumbers = window.confirm("Would you like to include numbers?");
+  let addSpecial = window.confirm("Would you like to include special characters?");
 
-  //if user picks certain variables, add them to variable allChar. if allChar is null, return to writePassword function.
+  //if user picks certain variables, add them to variable allCharacters. Rewrite password function if no options selected
   if (addLowercase) {
-    allChar += alphaLow;
+    allCharacters += lowercase;
   }
   if (addUppercase) {
-    allChar += alphaCap;
+    allCharacters += uppercase;
   }
   if (addNumbers) {
-    allChar += num;
+    allCharacters += numbers;
   }
-  if (addSpecialChar) {
-    allChar += specialChar
+  if (addSpecial) {
+    allCharacters += special;
   }
-  if (!allChar) {
-    alert('You must include at least one character type!');
+  if (!allCharacters) {
+    alert("Please select at least one character type!");
     writePassword();
   }
 
   //create new string to represent randomly selected characters using math.random method
   let newPassword = '';
   for (let i = 0; i < length; i++) {
-    newPassword += allChar.charAt(Math.floor(Math.random() * allChar.length));
+    newPassword += allCharacters.charAt(Math.floor(Math.random() * allCharacters.length));
     console.log(newPassword);
   }
 
-  //declare variable to select HTML DOM element and assign the value to be equal to newPassword variable
+  //send new password to the html dom element password
   let password = document.querySelector("#password");
   password.value = newPassword;
 
